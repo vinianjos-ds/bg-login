@@ -241,7 +241,7 @@ main { max-width: 1320px; margin: 0 auto; padding: 20px 24px 140px; }
 /* =====================================================================
    GERENCIAL — sem servidor: fala direto com a API do GitHub.
    · data/admin.json   chave da POC protegida pela senha desta tela
-   · data/manifest.bin lista de estados/arquivos (criptografada)
+   · data/manifest.json lista de estados/arquivos (criptografada, em texto)
    · data/img/*.bin    fotos 1200×1600 JPEG (criptografadas)
    Processamento (recorte 3:4, redução, compressão, criptografia) acontece
    aqui no navegador, antes do envio — nada sobe aberto.
@@ -365,7 +365,8 @@ $("#loginForm").onsubmit = async e => {
     $("#loginView").hidden = true; $("#appView").hidden = false;
     render();
   } catch (err) {
-    $("#loginErr").textContent = err.message;
+    console.error(err);
+    $("#loginErr").textContent = err.message || `Erro inesperado (${err.name || "desconhecido"}). Recarregue a página e tente de novo.`;
   } finally { btn.disabled = false; btn.textContent = "Entrar"; }
 };
 $("#logoutBtn").onclick = () => {
@@ -374,9 +375,24 @@ $("#logoutBtn").onclick = () => {
   location.reload();
 };
 
+async function sealManifest(obj) {
+  const box = await seal(enc.encode(JSON.stringify(obj)));
+  return JSON.stringify({ v: 1, iv: b64(box.slice(0, 12)), data: b64(box.slice(12)) });
+}
+async function openManifest(text) {
+  const box = JSON.parse(text);
+  return JSON.parse(dec.decode(new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: ub64(box.iv) }, KEY, ub64(box.data)))));
+}
 async function loadManifest() {
-  const raw = await readRaw("data/manifest.bin");
-  M = raw ? JSON.parse(dec.decode(await openBox(raw))) : { v: 1, states: {} };
+  const raw = await readRaw("data/manifest.json");
+  if (!raw) {
+    // sem manifest: só é seguro começar vazio se também não houver imagens publicadas
+    const imgs = await readRaw("data/img").catch(() => null);
+    if (imgs) throw new Error("Não encontrei data/manifest.json, mas há imagens em data/img. Suba o manifest.json gerado pelo build antes de usar a gerencial.");
+    M = { v: 1, states: {} }; return;
+  }
+  try { M = await openManifest(dec.decode(raw)); }
+  catch { throw new Error("O arquivo data/manifest.json está corrompido ou foi gerado com outra senha. Suba de novo o manifest.json da pasta publicar/data."); }
   M.states ||= {};
 }
 
@@ -639,8 +655,8 @@ async function publish(attempt = 1) {
     }
     progress("Enviando…", .8);
     next.v = 1; next.updatedAt = now; next.rev = b64(crypto.getRandomValues(new Uint8Array(6)));
-    const mBlob = await gh("POST", "/git/blobs", { content: b64(await seal(enc.encode(JSON.stringify(next)))), encoding: "base64" });
-    tree.push({ path: "data/manifest.bin", mode: "100644", type: "blob", sha: mBlob.sha });
+    const mBlob = await gh("POST", "/git/blobs", { content: await sealManifest(next), encoding: "utf-8" });
+    tree.push({ path: "data/manifest.json", mode: "100644", type: "blob", sha: mBlob.sha });
     dels.forEach(f => { if (!tree.some(t => t.path === "data/" + f)) tree.push({ path: "data/" + f, mode: "100644", type: "blob", sha: null }); });
     const newTree = await gh("POST", "/git/trees", { base_tree: head.tree.sha, tree });
     const summary = Object.keys(P).map(u => u.toUpperCase()).join(", ");
@@ -661,7 +677,7 @@ async function publish(attempt = 1) {
   } catch (e) {
     console.error(e);
     publishing = false; $("#progress").hidden = true; setBusy(false);
-    toast("Não consegui publicar: " + e.message, true);
+    toast("Não consegui publicar: " + (e.message || e.name || "erro inesperado"), true);
     renderPending();
   } finally {
     $("#publishBtn").disabled = $("#discardBtn").disabled = false;
@@ -675,8 +691,8 @@ async function waitForPages(rev) {
   while (Date.now() - t0 < 5 * 60 * 1000) {
     await sleep(8000);
     try {
-      const r = await fetch(`${PAGES_BASE}data/manifest.bin?t=${Date.now()}`, { cache: "no-store" });
-      if (r.ok) { const m = JSON.parse(dec.decode(await openBox(new Uint8Array(await r.arrayBuffer())))); if (m.rev === rev) { setBusy(false, "No ar ✓"); toast("A POC já está com as imagens novas."); return; } }
+      const r = await fetch(`${PAGES_BASE}data/manifest.json?t=${Date.now()}`, { cache: "no-store" });
+      if (r.ok) { const m = await openManifest(await r.text()); if (m.rev === rev) { setBusy(false, "No ar ✓"); toast("A POC já está com as imagens novas."); return; } }
     } catch {}
   }
   setBusy(false, "Publicado (o site pode levar mais alguns minutos)");
