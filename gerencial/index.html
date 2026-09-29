@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#000000">
+<title>Gerencial · Backgrounds</title>
+<style>
+:root {
+  --bg: #000; --surface: #111113; --surface-2: #1b1b1e; --surface-3: #242428; --line: rgba(255,255,255,.10); --line-2: rgba(255,255,255,.18);
+  --text: #f2f2f3; --muted: #8e8e93; --faint: #5c5c61;
+  --ok: #34c759; --warn: #ffb020; --err: #ff6b6b; --new: #0a84ff; --brand: #CC092F;
+  --r: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Roboto, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+
+/* ---------- login ---------- */
+.login { min-height: 100dvh; display: grid; place-items: center; padding: 24px 16px; }
+.login form { width: min(100%, 420px); background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px 24px; }
+.login h1 { font-size: 21px; margin: 0 0 6px; letter-spacing: -.2px; }
+.login p.sub { margin: 0 0 22px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.field input { width: 100%; height: 46px; border-radius: 12px; padding: 0 14px; font-size: 16px; background: #0a0a0b;
+  border: 1px solid var(--line); outline: none; }
+.field input:focus { border-color: rgba(255,255,255,.45); box-shadow: 0 0 0 4px rgba(255,255,255,.07); }
+details.help { font-size: 13px; color: var(--muted); margin: -4px 0 14px; }
+details.help summary { cursor: pointer; color: var(--text); }
+details.help ol { padding-left: 18px; line-height: 1.55; margin: 8px 0 0; }
+details.help code { background: var(--surface-3); padding: 1px 5px; border-radius: 5px; color: var(--text); }
+.check { display: flex; gap: 10px; align-items: center; font-size: 14px; margin: 4px 0 18px; }
+.check input { width: 18px; height: 18px; accent-color: #fff; }
+.btn { height: 40px; padding: 0 14px; border-radius: 11px; border: 1px solid var(--line); background: var(--surface-2); font-size: 14px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; text-decoration: none; }
+.btn:hover { border-color: var(--line-2); }
+.btn.primary { background: #fff; color: #000; border-color: #fff; font-weight: 600; }
+.btn.primary:disabled { opacity: .55; cursor: default; }
+.btn.danger { color: var(--err); }
+.btn.block { width: 100%; height: 48px; justify-content: center; font-size: 16px; }
+.btn svg { width: 18px; height: 18px; }
+.error { color: var(--err); font-size: 13px; min-height: 18px; margin-top: 10px; line-height: 1.4; }
+
+/* ---------- app ---------- */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(0,0,0,.82); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1320px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.top h1 { font-size: 17px; margin: 0; letter-spacing: -.1px; }
+.repo { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: center; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); display: inline-block; }
+.dot.busy { background: var(--warn); animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+.spacer { flex: 1; }
+main { max-width: 1320px; margin: 0 auto; padding: 20px 24px 140px; }
+.intro { display: flex; gap: 16px; align-items: stretch; flex-wrap: wrap; margin-bottom: 18px; }
+.drop-hint { flex: 1 1 420px; border: 1.5px dashed var(--line-2); border-radius: 18px; padding: 18px 20px; display: flex; gap: 16px; align-items: center; }
+.drop-hint .ico { width: 44px; height: 44px; border-radius: 12px; background: var(--surface-2); display: grid; place-items: center; flex: none; }
+.drop-hint b { display: block; font-size: 15px; margin-bottom: 4px; }
+.drop-hint span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+.drop-hint code { background: var(--surface-3); color: var(--text); padding: 2px 6px; border-radius: 6px; font-size: 12px; }
+.stats { display: flex; gap: 10px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px 18px; min-width: 120px; }
+.stat b { font-size: 26px; font-weight: 650; display: block; font-variant-numeric: tabular-nums; letter-spacing: -.5px; }
+.stat span { font-size: 12px; color: var(--muted); }
+.filters { display: flex; gap: 6px; margin: 4px 0 16px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-size: 13px; color: var(--muted); }
+.chip[aria-pressed="true"] { background: #fff; color: #000; border-color: #fff; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; align-items: start; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px; display: flex; flex-direction: column; gap: 12px;
+  transition: border-color .15s, background .15s; position: relative; }
+.card.drag-over { border-color: #fff; background: var(--surface-2); }
+.card.pending { border-color: rgba(10,132,255,.55); }
+.card-head { display: flex; align-items: center; gap: 10px; }
+.uf { width: 40px; height: 32px; border-radius: 9px; background: #fff; color: #000; display: grid; place-items: center; font-weight: 700; font-size: 13px; flex: none; }
+.card.empty .uf { background: var(--surface-3); color: var(--muted); }
+.names { min-width: 0; flex: 1; }
+.names b { display: block; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.names span { font-size: 12px; color: var(--muted); }
+.status { font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+.status.ok { background: rgba(52,199,89,.14); color: var(--ok); }
+.status.partial { background: rgba(255,176,32,.14); color: var(--warn); }
+.status.empty { background: var(--surface-3); color: var(--muted); }
+.status.pend { background: rgba(10,132,255,.16); color: #5eb0ff; }
+.landmark { width: 100%; height: 34px; border-radius: 9px; background: #0a0a0b; border: 1px solid var(--line); padding: 0 10px; font-size: 13px; outline: none; }
+.landmark:focus { border-color: var(--line-2); }
+.slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.slot { position: relative; aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden; background: #0a0a0b; border: 1px dashed var(--line-2);
+  display: grid; place-items: center; cursor: pointer; }
+.slot.filled { border-style: solid; border-color: var(--line); }
+.slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.slot .ph { color: var(--faint); font-size: 22px; line-height: 1; }
+.slot .lbl { position: absolute; left: 6px; bottom: 6px; font-size: 10px; font-weight: 600; letter-spacing: .3px; padding: 3px 6px; border-radius: 6px;
+  background: rgba(0,0,0,.6); color: #fff; }
+.slot .badge { position: absolute; top: 6px; left: 6px; font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 6px; color: #fff; }
+.badge.new { background: var(--new); } .badge.del { background: var(--err); } .badge.warn { background: var(--warn); color: #000; left: auto; right: 6px; }
+.slot.removing img { opacity: .25; filter: grayscale(1); }
+.slot.drag-over { outline: 2px solid #fff; outline-offset: -2px; }
+.slot .acts { position: absolute; top: 6px; right: 6px; display: flex; gap: 4px; opacity: 0; transition: opacity .15s; }
+.slot:hover .acts, .slot:focus-within .acts { opacity: 1; }
+.slot .acts button { width: 26px; height: 26px; border-radius: 8px; border: 0; background: rgba(0,0,0,.7); display: grid; place-items: center; }
+.slot .acts svg { width: 14px; height: 14px; }
+.slot .spin { position: absolute; width: 18px; height: 18px; border: 2px solid var(--line-2); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.warns { font-size: 12px; color: var(--warn); line-height: 1.4; margin: -4px 0 0; }
+.card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 28px; }
+.card-foot small { color: var(--faint); font-size: 11px; }
+.link-btn { background: none; border: 0; color: var(--muted); font-size: 12px; padding: 4px 0; }
+.link-btn:hover { color: var(--err); }
+
+/* barra de alterações */
+.pending-bar { position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, 140%); z-index: 30; width: min(calc(100% - 32px), 760px);
+  background: rgba(28,28,30,.92); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--line-2); border-radius: 20px; padding: 12px 12px 12px 18px; display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6); transition: transform .35s cubic-bezier(.2,.9,.25,1); }
+.pending-bar.show { transform: translate(-50%, 0); }
+.pending-bar .txt { flex: 1; min-width: 0; }
+.pending-bar b { font-size: 14px; display: block; }
+.pending-bar span { font-size: 12px; color: var(--muted); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.progress { height: 3px; background: var(--surface-3); border-radius: 3px; overflow: hidden; margin-top: 6px; }
+.progress i { display: block; height: 100%; background: #fff; width: 0; transition: width .3s; }
+
+/* soltar em qualquer lugar */
+.drop-overlay { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.72); display: grid; place-items: center; pointer-events: none;
+  opacity: 0; transition: opacity .15s; }
+.drop-overlay.show { opacity: 1; }
+.drop-overlay div { border: 2px dashed #fff; border-radius: 28px; padding: 40px 56px; text-align: center; }
+.drop-overlay b { font-size: 22px; display: block; margin-bottom: 6px; }
+.drop-overlay span { color: var(--muted); }
+
+/* preview */
+.modal { position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.8); display: grid; place-items: center; padding: 20px; }
+.modal-in { background: var(--surface); border: 1px solid var(--line-2); border-radius: 24px; padding: 20px; width: min(100%, 980px); max-height: calc(100dvh - 40px); overflow: auto; }
+.modal-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.modal-head h2 { font-size: 17px; margin: 0; flex: 1; }
+.phones { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.phone { text-align: center; font-size: 12px; color: var(--muted); }
+.phone .scr { position: relative; overflow: hidden; border-radius: 18px; background: #000; margin-bottom: 8px; box-shadow: 0 0 0 1px var(--line-2); }
+.phone .scr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.zone { position: absolute; left: 0; right: 0; background: repeating-linear-gradient(135deg, rgba(255,59,48,.3) 0 5px, rgba(255,59,48,.1) 5px 10px); }
+.zone.t { top: 0; border-bottom: 1px dashed rgba(255,110,100,.95); } .zone.b { bottom: 0; border-top: 1px dashed rgba(255,110,100,.95); }
+.seg { display: inline-flex; background: var(--surface-2); border-radius: 10px; padding: 3px; }
+.seg button { border: 0; background: none; padding: 6px 12px; border-radius: 8px; font-size: 13px; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: #fff; color: #000; }
+.modal-note { color: var(--muted); font-size: 12px; margin: 14px 0 0; text-align: center; }
+
+.toasts { position: fixed; left: 20px; bottom: 20px; z-index: 70; display: flex; flex-direction: column; gap: 8px; max-width: min(420px, calc(100% - 40px)); }
+.toast { background: #fff; color: #000; border-radius: 12px; padding: 10px 14px; font-size: 13px; line-height: 1.4; box-shadow: 0 8px 30px rgba(0,0,0,.5); }
+.toast.err { background: var(--err); color: #000; }
+
+@media (max-width: 640px) {
+  .top-in, main { padding-left: 16px; padding-right: 16px; }
+  .stats { width: 100%; } .stat { flex: 1; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section class="login" id="loginView">
+  <form id="loginForm" autocomplete="on">
+    <h1>Gerencial de backgrounds</h1>
+    <p class="sub">Envie, troque ou remova as imagens de cada estado. As alterações vão direto para a POC publicada.</p>
+    <div class="field"><label for="pw">Senha da gerencial</label>
+      <input id="pw" type="password" autocomplete="current-password" required></div>
+    <div class="field"><label for="tk">Token do GitHub</label>
+      <input id="tk" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required></div>
+    <details class="help"><summary>Como criar o token (uma vez só)</summary>
+      <ol>
+        <li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Settings → Fine-grained tokens</a></li>
+        <li>Dê um nome (ex.: <code>gerencial-bg</code>) e uma validade</li>
+        <li><b>Repository access:</b> Only select repositories → <code id="repoName2">bg-login</code></li>
+        <li><b>Permissions → Repository → Contents:</b> Read and write</li>
+        <li>Generate token → copie e cole aqui</li>
+      </ol>
+    </details>
+    <div class="field"><label for="repo">Repositório</label>
+      <input id="repo" type="text" spellcheck="false" placeholder="usuario/repositorio" required></div>
+    <label class="check"><input type="checkbox" id="remember" checked> Lembrar o token neste navegador</label>
+    <button class="btn primary block" id="loginBtn" type="submit">Entrar</button>
+    <div class="error" id="loginErr" role="alert"></div>
+  </form>
+</section>
+
+<!-- ================= APP ================= -->
+<div id="appView" hidden>
+  <header class="top"><div class="top-in">
+    <h1>Backgrounds por estado</h1>
+    <span class="repo"><i class="dot" id="syncDot"></i><span id="syncTxt">Sincronizado</span> · <span id="repoLabel"></span></span>
+    <span class="spacer"></span>
+    <label class="btn" title="Selecionar pastas no computador">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M12 11v5M9.5 13.5h5"/></svg>
+      Adicionar pastas<input type="file" id="dirInput" webkitdirectory multiple hidden></label>
+    <a class="btn" href="../" target="_blank" rel="noopener">Abrir POC ↗</a>
+    <button class="btn" id="logoutBtn">Sair</button>
+  </div></header>
+
+  <main>
+    <div class="intro">
+      <div class="drop-hint">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></div>
+        <div><b>Arraste as pastas dos estados para qualquer lugar da página</b>
+          <span>Nome da pasta: <code>UF - Nome do estado (Ponto turístico)</code> · dentro, 3 imagens com <code>Manhã</code>, <code>Tarde</code> (ou <code>Dia</code>) e <code>Noite</code> no nome. Também dá para soltar uma imagem direto num quadro.</span></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="stOk">0</b><span>na POC</span></div>
+        <div class="stat"><b id="stPartial">0</b><span>incompletos</span></div>
+        <div class="stat"><b id="stEmpty">27</b><span>vazios</span></div>
+      </div>
+    </div>
+    <div class="filters" id="filters">
+      <button class="chip" data-f="all" aria-pressed="true">Todos</button>
+      <button class="chip" data-f="ok" aria-pressed="false">Na POC</button>
+      <button class="chip" data-f="partial" aria-pressed="false">Incompletos</button>
+      <button class="chip" data-f="empty" aria-pressed="false">Vazios</button>
+      <button class="chip" data-f="pend" aria-pressed="false">Com alterações</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <div class="pending-bar" id="pendingBar">
+    <div class="txt"><b id="pendTitle"></b><span id="pendList"></span>
+      <div class="progress" id="progress" hidden><i id="progressBar"></i></div></div>
+    <button class="btn" id="discardBtn">Descartar</button>
+    <button class="btn primary" id="publishBtn">Publicar</button>
+  </div>
+</div>
+
+<div class="drop-overlay" id="dropOverlay"><div><b>Solte as pastas aqui</b><span>Vou identificar o estado e o período de cada imagem</span></div></div>
+<div class="modal" id="modal" hidden></div>
+<div class="toasts" id="toasts"></div>
+<input type="file" id="slotInput" accept="image/jpeg,image/png,image/webp" hidden>
+
+<script>
+/* =====================================================================
+   GERENCIAL — sem servidor: fala direto com a API do GitHub.
+   · data/admin.json   chave da POC protegida pela senha desta tela
+   · data/manifest.bin lista de estados/arquivos (criptografada)
+   · data/img/*.bin    fotos 1200×1600 JPEG (criptografadas)
+   Processamento (recorte 3:4, redução, compressão, criptografia) acontece
+   aqui no navegador, antes do envio — nada sobe aberto.
+   ===================================================================== */
+const STATES = {
+  ac: ["Acre", "Rio Branco"], al: ["Alagoas", "Maceió"], ap: ["Amapá", "Macapá"], am: ["Amazonas", "Manaus"],
+  ba: ["Bahia", "Salvador"], ce: ["Ceará", "Fortaleza"], df: ["Distrito Federal", "Brasília"], es: ["Espírito Santo", "Vitória"],
+  go: ["Goiás", "Goiânia"], ma: ["Maranhão", "São Luís"], mt: ["Mato Grosso", "Cuiabá"], ms: ["Mato Grosso do Sul", "Campo Grande"],
+  mg: ["Minas Gerais", "Belo Horizonte"], pa: ["Pará", "Belém"], pb: ["Paraíba", "João Pessoa"], pr: ["Paraná", "Curitiba"],
+  pe: ["Pernambuco", "Recife"], pi: ["Piauí", "Teresina"], rj: ["Rio de Janeiro", "Rio de Janeiro"], rn: ["Rio Grande do Norte", "Natal"],
+  rs: ["Rio Grande do Sul", "Porto Alegre"], ro: ["Rondônia", "Porto Velho"], rr: ["Roraima", "Boa Vista"], sc: ["Santa Catarina", "Florianópolis"],
+  sp: ["São Paulo", "São Paulo"], se: ["Sergipe", "Aracaju"], to: ["Tocantins", "Palmas"],
+};
+const PERIODS = ["manha", "tarde", "noite"];
+const PLABEL = { manha: "Manhã", tarde: "Tarde", noite: "Noite" };
+const OUT_W = 1200, OUT_H = 1600, JPEG_Q = 0.82;
+const params = new URLSearchParams(location.search);
+const API = params.get("api") || "https://api.github.com";
+const PAGES_BASE = params.get("pages") || "../";
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+/* ---------- utilidades de criptografia ---------- */
+const enc = new TextEncoder(), dec = new TextDecoder();
+const ub64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+function b64(u8) { let s = ""; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); }
+async function deriveKey(pass, salt, iter) {
+  const base = await crypto.subtle.importKey("raw", enc.encode(pass), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: iter, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+}
+async function seal(u8) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, KEY, u8));
+  const out = new Uint8Array(12 + ct.length); out.set(iv); out.set(ct, 12); return out;
+}
+async function openBox(u8, key = KEY) {
+  return new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: u8.slice(0, 12) }, key, u8.slice(12)));
+}
+async function sha(u8) { return [...new Uint8Array(await crypto.subtle.digest("SHA-256", u8))].map(b => b.toString(16).padStart(2, "0")).join(""); }
+
+/* ---------- GitHub ---------- */
+let TOKEN = "", REPO = "", BRANCH = "main", KEY = null;
+async function gh(method, path, body, accept = "application/vnd.github+json") {
+  const r = await fetch(`${API}/repos/${REPO}${path}`, {
+    method, cache: "no-store",
+    headers: { Authorization: `Bearer ${TOKEN}`, Accept: accept, "X-GitHub-Api-Version": "2022-11-28", ...(body ? { "Content-Type": "application/json" } : {}) },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!r.ok) {
+    const e = new Error(({ 401: "Token inválido ou expirado.", 403: "O token não tem permissão de escrita neste repositório.",
+      404: "Repositório ou arquivo não encontrado (confira o nome e o acesso do token)." })[r.status] || `GitHub respondeu ${r.status}.`);
+    e.status = r.status; throw e;
+  }
+  return accept.includes("raw") ? new Uint8Array(await r.arrayBuffer()) : r.json();
+}
+const encPath = p => p.split("/").map(encodeURIComponent).join("/");
+async function readRaw(path) {
+  try { return await gh("GET", `/contents/${encPath(path)}?ref=${BRANCH}`, null, "application/vnd.github.raw"); }
+  catch (e) { if (e.status === 404) return null; throw e; }
+}
+
+/* ---------- estado ---------- */
+let M = { v: 1, states: {} };  // manifest publicado
+let P = {};                    // alterações pendentes: { uf: { landmark?, slots:{p:{file,url,w,h,warn}}, remove:{p:true}, removeState? } }
+let filter = "all";
+const thumbCache = {};
+
+function pend(uf) { return P[uf] ||= { slots: {}, remove: {} }; }
+function cleanPend(uf) {
+  const p = P[uf]; if (!p) return;
+  if (!Object.keys(p.slots).length && !Object.keys(p.remove).length && p.landmark === undefined && !p.removeState) delete P[uf];
+}
+function effective(uf) { // como o estado ficará depois de publicar
+  const pub = M.states[uf] || { files: {} }, p = P[uf];
+  const res = { landmark: pub.landmark || "", slots: {} };
+  if (p && p.removeState) return { landmark: "", slots: {}, removed: true };
+  if (p && p.landmark !== undefined) res.landmark = p.landmark;
+  PERIODS.forEach(k => {
+    if (p && p.slots[k]) res.slots[k] = { kind: "new", ...p.slots[k] };
+    else if (pub.files && pub.files[k]) res.slots[k] = { kind: p && p.remove[k] ? "del" : "pub", path: pub.files[k] };
+  });
+  return res;
+}
+function statusOf(uf) {
+  const e = effective(uf), n = PERIODS.filter(k => e.slots[k] && e.slots[k].kind !== "del").length;
+  return n === 3 ? "ok" : n === 0 ? "empty" : "partial";
+}
+
+/* ---------- login ---------- */
+(() => {
+  const h = location.hostname, seg = location.pathname.split("/").filter(Boolean);
+  const guess = h.endsWith(".github.io") ? `${h.split(".")[0]}/${seg[0] || ""}` : "";
+  $("#repo").value = params.get("repo") || localStorage.getItem("gerencial-repo") || guess;
+  $("#tk").value = localStorage.getItem("gerencial-token") || "";
+  $("#repoName2").textContent = ($("#repo").value.split("/")[1]) || "bg-login";
+})();
+$("#loginForm").onsubmit = async e => {
+  e.preventDefault();
+  const btn = $("#loginBtn"); btn.disabled = true; btn.textContent = "Verificando…"; $("#loginErr").textContent = "";
+  try {
+    TOKEN = $("#tk").value.trim(); REPO = $("#repo").value.trim().replace(/^https?:\/\/github\.com\//, "").replace(/\/$/, "");
+    const info = await gh("GET", "");
+    if (!info.permissions || !info.permissions.push) throw new Error("O token entra no repositório, mas não tem permissão de escrita (Contents: Read and write).");
+    BRANCH = info.default_branch || "main";
+    const adm = await readRaw("data/admin.json");
+    if (!adm) throw new Error("Não encontrei data/admin.json no repositório. Suba a pasta publicar/data da primeira publicação.");
+    const A = JSON.parse(dec.decode(adm));
+    let raw;
+    try { raw = await openBox(ub64(A.wrapped), await deriveKey($("#pw").value, ub64(A.salt), A.iter)); }
+    catch { throw new Error("Senha da gerencial incorreta."); }
+    KEY = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["encrypt", "decrypt"]);
+    try {
+      if ($("#remember").checked) localStorage.setItem("gerencial-token", TOKEN); else localStorage.removeItem("gerencial-token");
+      localStorage.setItem("gerencial-repo", REPO);
+    } catch {}
+    await loadManifest();
+    $("#repoLabel").textContent = `${REPO} · ${BRANCH}`;
+    $("#loginView").hidden = true; $("#appView").hidden = false;
+    render();
+  } catch (err) {
+    $("#loginErr").textContent = err.message;
+  } finally { btn.disabled = false; btn.textContent = "Entrar"; }
+};
+$("#logoutBtn").onclick = () => {
+  if (Object.keys(P).length && !confirm("Há alterações não publicadas. Sair mesmo assim?")) return;
+  try { localStorage.removeItem("gerencial-token"); } catch {}
+  location.reload();
+};
+
+async function loadManifest() {
+  const raw = await readRaw("data/manifest.bin");
+  M = raw ? JSON.parse(dec.decode(await openBox(raw))) : { v: 1, states: {} };
+  M.states ||= {};
+}
+
+/* ---------- render ---------- */
+const ICON = {
+  swap: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h13M14 4l3 3-3 3M20 17H7M10 14l-3 3 3 3"/></svg>',
+  del: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 7h14M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>',
+  undo: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg>',
+  eye: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>',
+};
+function render() {
+  const ufs = Object.keys(STATES).sort((a, b) => STATES[a][0].localeCompare(STATES[b][0]));
+  const counts = { ok: 0, partial: 0, empty: 0 };
+  ufs.forEach(uf => counts[statusOf(uf)]++);
+  $("#stOk").textContent = counts.ok; $("#stPartial").textContent = counts.partial; $("#stEmpty").textContent = counts.empty;
+
+  $("#grid").innerHTML = ufs.filter(uf => filter === "all" || (filter === "pend" ? P[uf] : statusOf(uf) === filter)).map(uf => {
+    const e = effective(uf), st = statusOf(uf), p = P[uf];
+    const pubSt = M.states[uf];
+    const chip = p ? '<span class="status pend">Alterado</span>'
+      : st === "ok" ? '<span class="status ok">Na POC</span>'
+      : st === "partial" ? '<span class="status partial">Incompleto</span>' : '<span class="status empty">Vazio</span>';
+    const warns = PERIODS.map(k => e.slots[k] && e.slots[k].warn ? `${PLABEL[k]}: ${e.slots[k].warn}` : "").filter(Boolean);
+    return `<article class="card ${st === "empty" ? "empty" : ""} ${p ? "pending" : ""}" data-uf="${uf}">
+      <div class="card-head"><span class="uf">${uf.toUpperCase()}</span>
+        <div class="names"><b>${esc(STATES[uf][0])}</b><span>${esc(STATES[uf][1])}</span></div>${chip}</div>
+      <input class="landmark" data-uf="${uf}" value="${esc(e.landmark)}" placeholder="Ponto turístico (ex.: MASP)" aria-label="Ponto turístico de ${esc(STATES[uf][0])}">
+      <div class="slots">${PERIODS.map(k => slotHTML(uf, k, e.slots[k])).join("")}</div>
+      ${warns.length ? `<p class="warns">⚠ ${warns.map(esc).join("<br>⚠ ")}</p>` : ""}
+      <div class="card-foot"><small>${st === "partial" && !p ? "Só entra na POC com os 3 períodos" : pubSt && pubSt.updatedAt ? "Atualizado " + new Date(pubSt.updatedAt).toLocaleDateString("pt-BR") : ""}</small>
+        ${p ? `<button class="link-btn" data-act="undo-state" data-uf="${uf}">Desfazer alterações</button>`
+          : pubSt ? `<button class="link-btn" data-act="remove-state" data-uf="${uf}">Remover estado</button>` : ""}</div>
+    </article>`;
+  }).join("") || '<p style="color:var(--muted)">Nenhum estado neste filtro.</p>';
+
+  // miniaturas publicadas (carregadas sob demanda)
+  document.querySelectorAll("img[data-path]").forEach(img => thumbObserver.observe(img));
+  renderPending();
+}
+function slotHTML(uf, k, s) {
+  const lbl = `<span class="lbl">${PLABEL[k]}</span>`;
+  if (!s) return `<div class="slot" tabindex="0" data-uf="${uf}" data-p="${k}" title="Adicionar imagem de ${PLABEL[k].toLowerCase()}"><span class="ph">+</span>${lbl}</div>`;
+  const img = s.kind === "new" ? `<img src="${s.url}" alt="">` : thumbCache[s.path] ? `<img src="${thumbCache[s.path]}" alt="">` : `<span class="spin"></span><img data-path="${s.path}" alt="" style="opacity:0">`;
+  const badge = s.kind === "new" ? `<span class="badge new">${M.states[uf] && M.states[uf].files && M.states[uf].files[k] ? "Substituir" : "Novo"}</span>` : s.kind === "del" ? '<span class="badge del">Remover</span>' : "";
+  const acts = s.kind === "del"
+    ? `<button data-act="undo-slot" title="Manter imagem">${ICON.undo}</button>`
+    : `<button data-act="view" title="Ver no celular">${ICON.eye}</button><button data-act="pick" title="Trocar imagem">${ICON.swap}</button><button data-act="${s.kind === "new" ? "undo-slot" : "del-slot"}" title="${s.kind === "new" ? "Desfazer" : "Remover"}">${s.kind === "new" ? ICON.undo : ICON.del}</button>`;
+  return `<div class="slot filled ${s.kind === "del" ? "removing" : ""}" tabindex="0" data-uf="${uf}" data-p="${k}">${img}${badge}${s.warn ? '<span class="badge warn">!</span>' : ""}<div class="acts">${acts}</div>${lbl}</div>`;
+}
+function renderPending() {
+  const ufs = Object.keys(P), bar = $("#pendingBar");
+  bar.classList.toggle("show", ufs.length > 0 || publishing);
+  if (publishing) return;
+  let n = 0; const parts = [];
+  ufs.forEach(uf => {
+    const p = P[uf], bits = [];
+    if (p.removeState) { n++; bits.push("remover estado"); }
+    else {
+      const s = Object.keys(p.slots), r = Object.keys(p.remove);
+      if (s.length) { n += s.length; bits.push(s.map(k => PLABEL[k].toLowerCase()).join(", ")); }
+      if (r.length) { n += r.length; bits.push("remover " + r.map(k => PLABEL[k].toLowerCase()).join(", ")); }
+      if (p.landmark !== undefined) { n++; bits.push("ponto turístico"); }
+    }
+    parts.push(`${uf.toUpperCase()} (${bits.join("; ")})`);
+  });
+  $("#pendTitle").textContent = `${n} ${n === 1 ? "alteração pendente" : "alterações pendentes"}`;
+  $("#pendList").textContent = parts.join(" · ");
+}
+
+const thumbObserver = new IntersectionObserver(entries => entries.forEach(en => {
+  if (!en.isIntersecting) return;
+  thumbObserver.unobserve(en.target); loadThumb(en.target);
+}), { rootMargin: "300px" });
+let thumbQueue = Promise.resolve();
+function loadThumb(img) {
+  const path = img.dataset.path;
+  thumbQueue = thumbQueue.then(async () => {
+    try {
+      if (!thumbCache[path]) {
+        const raw = await readRaw("data/" + path);
+        if (!raw) throw new Error("não encontrado");
+        thumbCache[path] = URL.createObjectURL(new Blob([await openBox(raw)], { type: "image/jpeg" }));
+      }
+      document.querySelectorAll(`img[data-path="${CSS.escape(path)}"]`).forEach(i => { i.src = thumbCache[path]; i.style.opacity = ""; i.previousElementSibling && i.previousElementSibling.classList.contains("spin") && i.previousElementSibling.remove(); });
+    } catch (e) { console.warn(path, e); }
+  });
+}
+
+/* ---------- interações nos cards ---------- */
+$("#filters").onclick = e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  filter = b.dataset.f; document.querySelectorAll("#filters .chip").forEach(c => c.setAttribute("aria-pressed", c === b)); render();
+};
+let pickTarget = null;
+$("#grid").addEventListener("click", e => {
+  const actBtn = e.target.closest("[data-act]"), slot = e.target.closest(".slot");
+  const uf = (actBtn && actBtn.dataset.uf) || (slot && slot.dataset.uf), k = slot && slot.dataset.p;
+  const act = actBtn ? actBtn.dataset.act : slot && !slot.classList.contains("filled") ? "pick" : slot ? "view" : null;
+  if (!act) return;
+  e.stopPropagation();
+  if (act === "pick") { pickTarget = { uf, k }; $("#slotInput").value = ""; $("#slotInput").click(); }
+  if (act === "view") openPreview(uf, k);
+  if (act === "del-slot") { pend(uf).remove[k] = true; render(); }
+  if (act === "undo-slot") { const p = pend(uf); if (p.slots[k]) { URL.revokeObjectURL(p.slots[k].url); delete p.slots[k]; } delete p.remove[k]; cleanPend(uf); render(); }
+  if (act === "remove-state") { if (confirm(`Remover todas as imagens de ${STATES[uf][0]}?`)) { P[uf] = { slots: {}, remove: {}, removeState: true }; render(); } }
+  if (act === "undo-state") { Object.values(P[uf].slots).forEach(s => URL.revokeObjectURL(s.url)); delete P[uf]; render(); }
+});
+$("#grid").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("slot")) { e.preventDefault(); e.target.click(); } });
+$("#grid").addEventListener("change", e => {
+  if (!e.target.classList.contains("landmark")) return;
+  const uf = e.target.dataset.uf, v = e.target.value.trim(), pub = (M.states[uf] && M.states[uf].landmark) || "";
+  if (v === pub) { if (P[uf]) { delete P[uf].landmark; cleanPend(uf); } } else pend(uf).landmark = v;
+  render();
+});
+$("#slotInput").onchange = async e => {
+  const f = e.target.files[0]; if (!f || !pickTarget) return;
+  await stageFile(pickTarget.uf, pickTarget.k, f); render();
+};
+
+/* ---------- entrada de arquivos ---------- */
+const FOLDER_RE = /^([A-Za-z]{2})\s*-\s*([^()]+?)\s*(?:\((.+)\))?\s*$/;
+function periodOf(name) {
+  const n = norm(name);
+  if (/manha/.test(n)) return "manha";
+  if (/tarde/.test(n) || /(^|[^a-z])dia([^a-z]|$)/.test(n)) return "tarde";
+  if (/noite/.test(n)) return "noite";
+  return null;
+}
+const isImage = f => /\.(jpe?g|png|webp)$/i.test(f.name) || /^image\/(jpeg|png|webp)$/.test(f.type);
+async function stageFile(uf, k, file) {
+  if (file.size > 40 * 1024 * 1024) { toast(`${file.name}: arquivo muito grande (máx. 40MB).`, true); return false; }
+  let bmp;
+  try { bmp = await createImageBitmap(file); } catch { toast(`${file.name}: não consegui ler a imagem.`, true); return false; }
+  const w = bmp.width, h = bmp.height; bmp.close && bmp.close();
+  const ratio = w / h, crop = Math.abs(ratio - 0.75) / 0.75;
+  const warn = [crop > 0.04 ? `proporção ${w}×${h} — ~${Math.round(crop * 100)}% será cortado ${ratio > 0.75 ? "nas laterais" : "em cima/embaixo"}` : "",
+    (w < OUT_W || h < OUT_H) ? `resolução baixa (${w}×${h}); o ideal é 1200×1600 ou mais` : ""].filter(Boolean).join(" · ");
+  const p = pend(uf);
+  if (p.removeState) { delete p.removeState; }
+  if (p.slots[k]) URL.revokeObjectURL(p.slots[k].url);
+  delete p.remove[k];
+  p.slots[k] = { file, url: URL.createObjectURL(file), w, h, warn };
+  return true;
+}
+// entries: [{ path: ["Pasta", "sub", "arquivo.png"], file }]
+async function stageEntries(entries, forcedUf) {
+  const done = [], skipped = [];
+  for (const { path, file } of entries) {
+    if (!isImage(file)) continue;
+    let uf = forcedUf, landmark;
+    for (const seg of path.slice(0, -1)) { const m = seg.match(FOLDER_RE); if (m && STATES[m[1].toLowerCase()]) { uf = m[1].toLowerCase(); landmark = m[3]; } }
+    if (!uf) { const m = file.name.match(/^([A-Za-z]{2})\s*-/); if (m && STATES[m[1].toLowerCase()]) uf = m[1].toLowerCase(); }
+    const k = periodOf(file.name);
+    if (!uf || !k) { skipped.push(path.join("/")); continue; }
+    if (await stageFile(uf, k, file)) {
+      done.push(`${uf.toUpperCase()} ${PLABEL[k]}`);
+      if (landmark && landmark.trim() !== ((M.states[uf] && M.states[uf].landmark) || "")) pend(uf).landmark = landmark.trim();
+    }
+  }
+  render();
+  if (done.length) toast(`${done.length} ${done.length === 1 ? "imagem preparada" : "imagens preparadas"}: ${[...new Set(done.map(d => d.slice(0, 2)))].join(", ")}. Revise e clique em Publicar.`);
+  if (skipped.length) toast(`Não identifiquei estado/período de: ${skipped.slice(0, 4).join(", ")}${skipped.length > 4 ? "…" : ""}`, true);
+}
+$("#dirInput").onchange = e => {
+  const list = [...e.target.files].map(f => ({ path: (f.webkitRelativePath || f.name).split("/"), file: f }));
+  e.target.value = ""; stageEntries(list);
+};
+
+// arrastar e soltar (pastas inteiras, várias de uma vez)
+async function walk(entry, prefix, out) {
+  if (entry.isFile) { const file = await new Promise((res, rej) => entry.file(res, rej)); out.push({ path: [...prefix, file.name], file }); }
+  else if (entry.isDirectory) {
+    const reader = entry.createReader(); let batch;
+    do { batch = await new Promise((res, rej) => reader.readEntries(res, rej)); for (const c of batch) await walk(c, [...prefix, entry.name], out); } while (batch.length);
+  }
+}
+let dragDepth = 0;
+const hasFiles = e => e.dataTransfer && [...e.dataTransfer.types].includes("Files");
+addEventListener("dragenter", e => { if (!hasFiles(e) || $("#appView").hidden) return; e.preventDefault(); dragDepth++; $("#dropOverlay").classList.add("show"); });
+addEventListener("dragleave", e => { if (!hasFiles(e)) return; if (--dragDepth <= 0) { dragDepth = 0; $("#dropOverlay").classList.remove("show"); } });
+addEventListener("dragover", e => {
+  if (!hasFiles(e) || $("#appView").hidden) return; e.preventDefault();
+  document.querySelectorAll(".drag-over").forEach(x => x.classList.remove("drag-over"));
+  const t = document.elementFromPoint(e.clientX, e.clientY), slot = t && t.closest(".slot"), card = t && t.closest(".card");
+  (slot || card) && (slot || card).classList.add("drag-over");
+  $("#dropOverlay").classList.toggle("show", !card);
+});
+addEventListener("drop", async e => {
+  if (!hasFiles(e) || $("#appView").hidden) return; e.preventDefault();
+  dragDepth = 0; $("#dropOverlay").classList.remove("show");
+  document.querySelectorAll(".drag-over").forEach(x => x.classList.remove("drag-over"));
+  const t = document.elementFromPoint(e.clientX, e.clientY), slot = t && t.closest(".slot"), card = t && t.closest(".card");
+  const items = [...e.dataTransfer.items].map(i => i.webkitGetAsEntry && i.webkitGetAsEntry()).filter(Boolean);
+  const out = [];
+  if (items.length) for (const it of items) await walk(it, [], out);
+  else [...e.dataTransfer.files].forEach(f => out.push({ path: [f.name], file: f }));
+  // uma imagem solta direto num quadro → vai exatamente para aquele período
+  if (slot && out.length === 1) { if (await stageFile(slot.dataset.uf, slot.dataset.p, out[0].file)) render(); return; }
+  stageEntries(out, card ? card.dataset.uf : undefined);
+});
+
+/* ---------- processamento (recorte 3:4 + 1200×1600 + JPEG) ---------- */
+async function processImage(file) {
+  const bmp = await createImageBitmap(file);
+  let sx = 0, sy = 0, sw = bmp.width, sh = bmp.height;
+  const target = OUT_W / OUT_H;
+  if (sw / sh > target) { const nw = Math.round(sh * target); sx = Math.round((sw - nw) / 2); sw = nw; }
+  else if (sw / sh < target) { const nh = Math.round(sw / target); sy = Math.round((sh - nh) / 2); sh = nh; }
+  const c = document.createElement("canvas"); c.width = OUT_W; c.height = OUT_H;
+  const ctx = c.getContext("2d"); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(bmp, sx, sy, sw, sh, 0, 0, OUT_W, OUT_H); bmp.close && bmp.close();
+  const blob = await new Promise(r => c.toBlob(r, "image/jpeg", JPEG_Q));
+  return new Uint8Array(await blob.arrayBuffer());
+}
+
+/* ---------- publicar (1 commit com tudo) ---------- */
+let publishing = false;
+function progress(txt, frac) {
+  $("#pendTitle").textContent = txt; $("#pendList").textContent = "Não feche esta aba.";
+  $("#progress").hidden = false; $("#progressBar").style.width = Math.round(frac * 100) + "%";
+}
+$("#discardBtn").onclick = () => {
+  if (!confirm("Descartar todas as alterações pendentes?")) return;
+  Object.values(P).forEach(p => Object.values(p.slots).forEach(s => URL.revokeObjectURL(s.url)));
+  P = {}; render();
+};
+$("#publishBtn").onclick = () => publish();
+async function publish(attempt = 1) {
+  if (publishing || !Object.keys(P).length) return;
+  publishing = true; setBusy(true, "Publicando…");
+  $("#publishBtn").disabled = $("#discardBtn").disabled = true;
+  try {
+    progress("Preparando…", .03);
+    const ref = await gh("GET", `/git/ref/heads/${BRANCH}`);
+    const head = await gh("GET", `/git/commits/${ref.object.sha}`);
+    await loadManifest(); // pega a versão mais recente (outra pessoa pode ter publicado)
+    const next = JSON.parse(JSON.stringify(M)), tree = [], dels = new Set(), now = new Date().toISOString(), freshThumbs = {};
+    const jobs = []; Object.entries(P).forEach(([uf, p]) => Object.entries(p.slots).forEach(([k, s]) => jobs.push({ uf, k, s })));
+    let i = 0;
+    for (const { uf, k, s } of jobs) {
+      progress(`Processando ${uf.toUpperCase()} · ${PLABEL[k]} (${++i}/${jobs.length})`, .05 + .7 * (i - 1) / Math.max(1, jobs.length));
+      const jpeg = await processImage(s.file);
+      const rel = `img/${uf}-${k}-${(await sha(jpeg)).slice(0, 10)}.bin`;
+      const blob = await gh("POST", "/git/blobs", { content: b64(await seal(jpeg)), encoding: "base64" });
+      tree.push({ path: "data/" + rel, mode: "100644", type: "blob", sha: blob.sha });
+      const st = next.states[uf] ||= { landmark: "", files: {} }; st.files ||= {};
+      if (st.files[k] && st.files[k] !== rel) dels.add(st.files[k]);
+      st.files[k] = rel; st.updatedAt = now;
+      freshThumbs[rel] = URL.createObjectURL(new Blob([jpeg], { type: "image/jpeg" }));
+    }
+    for (const [uf, p] of Object.entries(P)) {
+      const st = next.states[uf];
+      if (p.removeState) { if (st) Object.values(st.files || {}).forEach(f => dels.add(f)); delete next.states[uf]; continue; }
+      if (!st && p.landmark === undefined) continue;
+      const s2 = next.states[uf] ||= { landmark: "", files: {} };
+      Object.keys(p.remove).forEach(k => { if (s2.files[k]) { dels.add(s2.files[k]); delete s2.files[k]; } });
+      if (p.landmark !== undefined) s2.landmark = p.landmark;
+      s2.updatedAt = now;
+      if (!Object.keys(s2.files).length && !s2.landmark) delete next.states[uf];
+    }
+    progress("Enviando…", .8);
+    next.v = 1; next.updatedAt = now; next.rev = b64(crypto.getRandomValues(new Uint8Array(6)));
+    const mBlob = await gh("POST", "/git/blobs", { content: b64(await seal(enc.encode(JSON.stringify(next)))), encoding: "base64" });
+    tree.push({ path: "data/manifest.bin", mode: "100644", type: "blob", sha: mBlob.sha });
+    dels.forEach(f => { if (!tree.some(t => t.path === "data/" + f)) tree.push({ path: "data/" + f, mode: "100644", type: "blob", sha: null }); });
+    const newTree = await gh("POST", "/git/trees", { base_tree: head.tree.sha, tree });
+    const summary = Object.keys(P).map(u => u.toUpperCase()).join(", ");
+    const commit = await gh("POST", "/git/commits", { message: `gerencial: atualiza ${summary}`, tree: newTree.sha, parents: [ref.object.sha] });
+    progress("Publicando…", .92);
+    try { await gh("PATCH", `/git/refs/heads/${BRANCH}`, { sha: commit.sha, force: false }); }
+    catch (e) {
+      if ((e.status === 422 || e.status === 409) && attempt < 3) { publishing = false; return publish(attempt + 1); } // alguém publicou no meio: refaz sobre a nova versão
+      throw e;
+    }
+    Object.assign(thumbCache, freshThumbs);
+    Object.values(P).forEach(p => Object.values(p.slots).forEach(s => URL.revokeObjectURL(s.url)));
+    M = next; P = {};
+    publishing = false; $("#progress").hidden = true;
+    render();
+    toast(`Publicado (${summary}). A POC atualiza em 1–2 minutos.`);
+    waitForPages(next.rev);
+  } catch (e) {
+    console.error(e);
+    publishing = false; $("#progress").hidden = true; setBusy(false);
+    toast("Não consegui publicar: " + e.message, true);
+    renderPending();
+  } finally {
+    $("#publishBtn").disabled = $("#discardBtn").disabled = false;
+  }
+}
+function setBusy(busy, txt) { $("#syncDot").classList.toggle("busy", busy); $("#syncTxt").textContent = txt || (busy ? "…" : "Sincronizado"); }
+// confere no site publicado (GitHub Pages) quando a nova versão entrou no ar
+async function waitForPages(rev) {
+  setBusy(true, "Atualizando o site…");
+  const t0 = Date.now();
+  while (Date.now() - t0 < 5 * 60 * 1000) {
+    await sleep(8000);
+    try {
+      const r = await fetch(`${PAGES_BASE}data/manifest.bin?t=${Date.now()}`, { cache: "no-store" });
+      if (r.ok) { const m = JSON.parse(dec.decode(await openBox(new Uint8Array(await r.arrayBuffer())))); if (m.rev === rev) { setBusy(false, "No ar ✓"); toast("A POC já está com as imagens novas."); return; } }
+    } catch {}
+  }
+  setBusy(false, "Publicado (o site pode levar mais alguns minutos)");
+}
+
+/* ---------- preview em celulares ---------- */
+function openPreview(uf, k) {
+  const e = effective(uf);
+  const src = p => { const s = e.slots[p]; return !s ? null : s.kind === "new" ? s.url : thumbCache[s.path] || null; };
+  const phones = [[360, 640, "Android compacto"], [360, 800, "Android base"], [430, 932, "iPhone Pro Max"]];
+  const TOP = 184, BOTTOM = 364, H = 360; // zonas do layout (logo/header e cards/botão), em px de tela
+  const draw = p => {
+    const url = src(p);
+    $("#modal").innerHTML = `<div class="modal-in" role="dialog" aria-label="Preview">
+      <div class="modal-head"><h2>${uf.toUpperCase()} · ${esc(STATES[uf][0])}${e.landmark ? " · " + esc(e.landmark) : ""}</h2>
+        <div class="seg">${PERIODS.map(q => `<button data-p="${q}" aria-pressed="${q === p}" ${src(q) ? "" : "disabled"}>${PLABEL[q]}</button>`).join("")}</div>
+        <button class="btn" data-close>Fechar</button></div>
+      <div class="phones">${phones.map(([w, h, n]) => { const s = H / h; return `<div class="phone">
+        <div class="scr" style="width:${w * s}px;height:${H}px">${url ? `<img src="${url}" alt="">` : ""}
+          <div class="zone t" style="height:${TOP * s}px"></div><div class="zone b" style="height:${BOTTOM * s}px"></div></div>${w}×${h} · ${n}</div>`; }).join("")}</div>
+      <p class="modal-note">Recorte centralizado, igual ao da POC. Em vermelho: áreas cobertas pelo logo/header e pelos cards — o ponto turístico deve ficar entre elas.</p>
+    </div>`;
+  };
+  draw(k); $("#modal").hidden = false;
+  $("#modal").onclick = ev => {
+    if (ev.target.id === "modal" || ev.target.closest("[data-close]")) { $("#modal").hidden = true; return; }
+    const b = ev.target.closest(".seg button"); if (b && !b.disabled) draw(b.dataset.p);
+  };
+}
+addEventListener("keydown", e => { if (e.key === "Escape") $("#modal").hidden = true; });
+
+function toast(msg, err) {
+  const t = document.createElement("div"); t.className = "toast" + (err ? " err" : ""); t.textContent = msg;
+  $("#toasts").appendChild(t); setTimeout(() => t.remove(), err ? 9000 : 6000);
+}
+addEventListener("beforeunload", e => { if (Object.keys(P).length || publishing) { e.preventDefault(); e.returnValue = ""; } });
+</script>
+</body>
+</html>
